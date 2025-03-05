@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wpDataTablesWrapper {
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Scrollable wrapper */
+      .table-container {
+        overflow-x: auto;
+        max-width: 100%;
+        position: relative;
+        margin-top: 20px;
+        height: 100%; /* Set table height for vertical scrolling */
+        overflow-y: scroll;
+      }
+
+      /* Fake scrollbar on top */
+      .top-scroll {
+        height: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        z-index: 100;
+      }
+
+      /* Make sure top scrollbar width matches the table */
+      .top-scroll div {
+        width: fit-content;
+        min-width: 100%;
+        height: 1px;
+      }
+
+      /* Sticky column styling */
+      .wpDataTablesWrapper table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+      }
+
+      /* Table cell styling */
+      .wpDataTablesWrapper table td,
+      .wpDataTablesWrapper table th {
+        white-space: nowrap;
+        padding: 8px;
+        border: 1px solid #ddd;
+      }
+
+      /* Style the first row */
+      .wpDataTablesWrapper table thead:first-child td {
+        background-color: #005f69;
+        color: white;
+        font-weight: bold;
+      }
+
+      /* Style first row */
+      /* Make the first row sticky */
+      .wpDataTablesWrapper thead tr {
+        position: sticky;
+        top: 0;
+        background-color: #005f69;
+        color: white;
+        font-weight: bold;
+        z-index: 100;
+      }
+
+      /* Make first 3 columns sticky */
+      .wpDataTablesWrapper table td:nth-child(1),
+    .wpDataTablesWrapper table td:nth-child(2),
+    /* .wpDataTablesWrapper table td:nth-child(3), */
+    .wpDataTablesWrapper table th:nth-child(1),
+    .wpDataTablesWrapper table th:nth-child(2)
+    /* .wpDataTablesWrapper table th:nth-child(3)  */ {
+        position: sticky;
+        left: 0;
+        background: white; /* Ensure visibility */
+        z-index: 2;
+      }
+
+      /* Adjust left positions */
+      .wpDataTablesWrapper table td:nth-child(2),
+      .wpDataTablesWrapper table th:nth-child(2) {
+        left: 48.25px; /* Adjust based on column width */
+      }
+
+      /* .wpDataTablesWrapper table td:nth-child(3),
+    .wpDataTablesWrapper table th:nth-child(3) {
+      left: calc(166.45px + 47.25px);
+    } */
+
+      /* Ensure scrolling sync */
+      .table-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .top-scroll::-webkit-scrollbar {
+        height: 5px;
+      }
+
+      .top-scroll::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+      }
+
+      .top-scroll::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      .wpDataTablesWrapper a {
+        color: #005f69;
+        /* text-decoration: none; */
+      }
+
+      /* Set second column width to 100px on mobile */
+      @media screen and (max-width: 768px) {
+        .wpDataTablesWrapper table td:nth-child(2),
+        .wpDataTablesWrapper table th:nth-child(2) {
+          min-width: 100px;
+          max-width: 100px;
+          width: 100px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wpDataTablesWrapper">
+      <div class="top-scroll">
+        <div></div>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <td>STT</td>
+              <td>Chương trình đào tạo</td>
+              <td>Thuộc ngành</td>
+              <td>Mã đăng ký xét tuyển</td>
+              <td>Chỉ tiêu 2025</td>
+              <td>PT3</td>
+              <td>PT4</td>
+              <td>PT5</td>
+              <td>PT6</td>
+              <td>Tiếng Anh toàn phần</td>
+              <td>Tiếng Anh bán phần</td>
+              <td>Tiếng Việt</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>
+                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
+                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
+                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
+              </td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      // Ensure scrollbar width matches the table's scroll width
+      function syncScrollbarWidth() {
+        const tableContainer = document.querySelector(".table-container");
+        const topScroll = document.querySelector(".top-scroll div");
+        topScroll.style.width = tableContainer.scrollWidth + "px";
+      }
+
+      // Sync scrolling between the table and the fake scrollbar
+      document
+        .querySelector(".top-scroll")
+        .addEventListener("scroll", function () {
+          document.querySelector(".table-container").scrollLeft =
+            this.scrollLeft;
+        });
+
+      document
+        .querySelector(".table-container")
+        .addEventListener("scroll", function () {
+          document.querySelector(".top-scroll").scrollLeft = this.scrollLeft;
+        });
+
+      // Adjust scrollbar width on load and resize
+      window.addEventListener("load", syncScrollbarWidth);
+      window.addEventListener("resize", syncScrollbarWidth);
+    </script>
+  </body>
+</html>
