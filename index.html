@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      .sample-section {
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
       .wpDataTablesWrapper {
         position: relative;
         overflow: hidden;
@@ -16,8 +23,8 @@
         max-width: 100%;
         position: relative;
         margin-top: 20px;
-        height: 100%; /* Set table height for vertical scrolling */
-        overflow-y: scroll;
+        height: 90vh; /* Set table height for vertical scrolling */
+        overflow-y: auto;
       }
 
       /* Fake scrollbar on top */
@@ -25,7 +32,7 @@
         height: 20px;
         overflow-x: auto;
         overflow-y: hidden;
-        position: fixed;
+        position: absolute; /* Make it relative to .wpDataTablesWrapper */
         top: 0;
         left: 0;
         width: 100%;
@@ -56,13 +63,23 @@
       }
 
       /* Style the first row */
-      .wpDataTablesWrapper table thead:first-child td {
+      .wpDataTablesWrapper table thead:first-child th {
         background-color: #005f69;
         color: white;
         font-weight: bold;
       }
 
       /* Style first row */
+      /* Sticky table header */
+      .wpDataTablesWrapper thead {
+        position: sticky;
+        top: 0;
+        background-color: #005f69;
+        color: white;
+        font-weight: bold;
+        z-index: 101;
+      }
+
       /* Make the first row sticky */
       .wpDataTablesWrapper thead tr {
         position: sticky;
@@ -73,13 +90,11 @@
         z-index: 100;
       }
 
-      /* Make first 3 columns sticky */
+      /* Make the first columns sticky */
       .wpDataTablesWrapper table td:nth-child(1),
-    .wpDataTablesWrapper table td:nth-child(2),
-    /* .wpDataTablesWrapper table td:nth-child(3), */
-    .wpDataTablesWrapper table th:nth-child(1),
-    .wpDataTablesWrapper table th:nth-child(2)
-    /* .wpDataTablesWrapper table th:nth-child(3)  */ {
+      .wpDataTablesWrapper table td:nth-child(2),
+      .wpDataTablesWrapper table th:nth-child(1),
+      .wpDataTablesWrapper table th:nth-child(2) {
         position: sticky;
         left: 0;
         background: white; /* Ensure visibility */
@@ -134,6 +149,9 @@
     </style>
   </head>
   <body>
+    <div class="sample-section">
+      <span>Sample section</span>
+    </div>
     <div class="wpDataTablesWrapper">
       <div class="top-scroll">
         <div></div>
@@ -142,18 +160,18 @@
         <table>
           <thead>
             <tr>
-              <td>STT</td>
-              <td>Chương trình đào tạo</td>
-              <td>Thuộc ngành</td>
-              <td>Mã đăng ký xét tuyển</td>
-              <td>Chỉ tiêu 2025</td>
-              <td>PT3</td>
-              <td>PT4</td>
-              <td>PT5</td>
-              <td>PT6</td>
-              <td>Tiếng Anh toàn phần</td>
-              <td>Tiếng Anh bán phần</td>
-              <td>Tiếng Việt</td>
+              <th>STT</th>
+              <th>Chương trình đào tạo</th>
+              <th>Thuộc ngành</th>
+              <th>Mã đăng ký xét tuyển</th>
+              <th>Chỉ tiêu 2025</th>
+              <th>PT3</th>
+              <th>PT4</th>
+              <th>PT5</th>
+              <th>PT6</th>
+              <th>Tiếng Anh toàn phần</th>
+              <th>Tiếng Anh bán phần</th>
+              <th>Tiếng Việt</th>
             </tr>
           </thead>
           <tbody>
@@ -411,6 +429,9 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="sample-section">
+        <span>Sample section</span>
       </div>
     </div>
 
