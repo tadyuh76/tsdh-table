@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+      }
+
       .sample-section {
         height: 400px;
         display: flex;
@@ -15,6 +22,7 @@
       .wpDataTablesWrapper {
         position: relative;
         overflow: hidden;
+        margin: 20px;
       }
 
       /* Scrollable wrapper */
@@ -69,7 +77,6 @@
         font-weight: bold;
       }
 
-      /* Style first row */
       /* Sticky table header */
       .wpDataTablesWrapper thead {
         position: sticky;
@@ -81,7 +88,8 @@
       }
 
       /* Make the first row sticky */
-      .wpDataTablesWrapper thead tr {
+      .wpDataTablesWrapper thead tr:first-child th:nth-child(1),
+      .wpDataTablesWrapper thead tr:first-child th:nth-child(2) {
         position: sticky;
         top: 0;
         background-color: #005f69;
@@ -97,7 +105,7 @@
       .wpDataTablesWrapper table th:nth-child(2) {
         position: sticky;
         left: 0;
-        background: white; /* Ensure visibility */
+        background: white;
         z-index: 2;
       }
 
@@ -107,18 +115,13 @@
         left: 48.25px; /* Adjust based on column width */
       }
 
-      /* .wpDataTablesWrapper table td:nth-child(3),
-    .wpDataTablesWrapper table th:nth-child(3) {
-      left: calc(166.45px + 47.25px);
-    } */
-
       /* Ensure scrolling sync */
       .table-container::-webkit-scrollbar {
         display: none;
       }
 
       .top-scroll::-webkit-scrollbar {
-        height: 5px;
+        height: 10px;
       }
 
       .top-scroll::-webkit-scrollbar-thumb {
@@ -129,9 +132,60 @@
       .top-scroll::-webkit-scrollbar-track {
         background: #f1f1f1;
       }
+
       .wpDataTablesWrapper a {
         color: #005f69;
-        /* text-decoration: none; */
+      }
+
+      .wpDataTablesWrapper a:hover {
+        color: #ff6600;
+      }
+
+      .section-heading a {
+        color: #005f69;
+        text-decoration: none;
+      }
+
+      .section-heading a:hover {
+        color: #ff6600;
+      }
+
+      .group-heading {
+        background: #005f69 !important;
+        text-align: left !important;
+        color: white;
+      }
+
+      .section-heading {
+        color: #005f69;
+        font-weight: bold;
+      }
+
+      /* Center align specific columns */
+      .wpDataTablesWrapper table td:nth-child(1),
+      .wpDataTablesWrapper table td:nth-child(3),
+      .wpDataTablesWrapper table td:nth-child(4),
+      .wpDataTablesWrapper table td:nth-child(5),
+      .wpDataTablesWrapper table td:nth-child(6),
+      .wpDataTablesWrapper table td:nth-child(7),
+      .wpDataTablesWrapper table td:nth-child(8),
+      .wpDataTablesWrapper table td:nth-child(9),
+      .wpDataTablesWrapper table td:nth-child(10),
+      .wpDataTablesWrapper table td:nth-child(11),
+      .wpDataTablesWrapper table td:nth-child(12),
+      .wpDataTablesWrapper table td:nth-child(13),
+      .wpDataTablesWrapper table td:nth-child(14) {
+        text-align: center;
+      }
+
+      .wpDataTablesWrapper table td:nth-child(2),
+      .wpDataTablesWrapper table th:nth-child(2) {
+        min-width: 300px;
+        max-width: 300px;
+        width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: wrap;
       }
 
       /* Set second column width to 100px on mobile */
@@ -140,10 +194,10 @@
         .wpDataTablesWrapper table th:nth-child(2) {
           min-width: 100px;
           max-width: 100px;
-          width: 100px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: wrap;
+        }
+
+        .wpDataTablesWrapper {
+          margin: 0;
         }
       }
     </style>
@@ -160,31 +214,78 @@
         <table>
           <thead>
             <tr>
-              <th>STT</th>
-              <th>Chương trình đào tạo</th>
-              <th>Thuộc ngành</th>
-              <th>Mã đăng ký xét tuyển</th>
-              <th>Chỉ tiêu 2025</th>
+              <th rowspan="2">STT</th>
+              <th rowspan="2">Chương trình đào tạo</th>
+              <th rowspan="2">Thuộc ngành</th>
+              <th rowspan="2">Mã đăng ký<br />xét tuyển</th>
+              <th rowspan="2">Chỉ tiêu<br />2025</th>
+              <th colspan="2">Tổ hợp xét tuyển 2025</th>
+              <th colspan="4">
+                Điểm trúng tuyển 2024<br />
+                (Lưu ý: Phương thức XT 2024 khác 2025.<br />
+                Xem chi tiết tại đây)
+              </th>
+              <th colspan="3">Loại hình đào tạo</th>
+            </tr>
+            <tr>
+              <th>PT3</th>
+              <th>PT5</th>
               <th>PT3</th>
               <th>PT4</th>
               <th>PT5</th>
               <th>PT6</th>
-              <th>Tiếng Anh toàn phần</th>
-              <th>Tiếng Anh bán phần</th>
+              <th>Tiếng Anh<br />toàn phần</th>
+              <th>Tiếng Anh<br />bán phần</th>
               <th>Tiếng Việt</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td colspan="14" class="group-heading">
+                <b> Nhóm 1: Chương trình tiên tiến quốc tế </b><br />
+                Là các chương trình đào tạo được kiểm định chất lượng bởi các tổ
+                chức quốc tế (AUN-QA (Mạng lưới Đảm bảo chất lượng các trường
+                đại học ASEAN), FIBAA (Bộ tiêu chuẩn kiểm định chất lượng quốc
+                tế của châu Âu)…)
+              </td>
+            </tr>
+            <tr class="section-heading">
+              <td>I.</td>
+              <td colspan="13">
+                Lĩnh vực Kinh doanh và quản lý
+                <a
+                  href="https://www.ueh.edu.vn/cuoc-song-ueh/tin-tuc/to-chuc-the-cong-bo-xep-hang-dai-hoc-the-gioi-2025-theo-linh-vuc-cac-linh-vuc-truyen-thong-cua-ueh-dan-dau-cac-dai-hoc-tai-viet-nam-vao-top-cac-dai-hoc-hang-dau-the-gioi-73404"
+                  >(Top 301+ Đại học thế giới theo BXH THE World University
+                  Rankings 2025)</a
+                >
+              </td>
+            </tr>
+            <tr>
               <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
+              <td>Kiểm toán (Auditing)</td>
+              <td>Kiểm toán</td>
+              <td>7340302</td>
+              <td>200</td>
+              <td rowspan="8">
                 - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
                 D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
                 AH2<br />- D09, AH5, D36, D37, D38, D39, D40
               </td>
+              <td rowspan="8">A00, A01, D01, D07, D09</td>
+              <td>68</td>
+              <td>70</td>
+              <td>930</td>
+              <td>26.50</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Kế toán doanh nghiệp (Corporate Accounting) (S)</td>
+              <td rowspan="2">Kế toán</td>
+              <td>7340301_01</td>
+              <td>590</td>
               <td>68</td>
               <td>71</td>
               <td>910</td>
@@ -194,15 +295,126 @@
               <td><a href="#">Xem</a></td>
             </tr>
             <tr>
+              <td>3</td>
+              <td>Kế toán công (Public Sector Accounting)</td>
+              <td>7340301_02</td>
+              <td>210</td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
               <td>1</td>
               <td>Kinh doanh thương mại (Commerce)</td>
               <td>Kinh doanh thương mại</td>
               <td>7340121</td>
-              <td>
+              <td>210</td>
+
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>210</td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>210</td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#"></a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>210</td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#"></a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kinh doanh thương mại (Commerce)</td>
+              <td>Kinh doanh thương mại</td>
+              <td>7340121</td>
+              <td>210</td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr class="section-heading">
+              <td>I.</td>
+              <td colspan="13">
+                Lĩnh vực Kinh doanh và quản lý
+                <a
+                  href="https://www.ueh.edu.vn/cuoc-song-ueh/tin-tuc/to-chuc-the-cong-bo-xep-hang-dai-hoc-the-gioi-2025-theo-linh-vuc-cac-linh-vuc-truyen-thong-cua-ueh-dan-dau-cac-dai-hoc-tai-viet-nam-vao-top-cac-dai-hoc-hang-dau-the-gioi-73404"
+                  >(Top 301+ Đại học thế giới theo BXH THE World University
+                  Rankings 2025)</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kiểm toán (Auditing)</td>
+              <td>Kiểm toán</td>
+              <td>7340302</td>
+              <td>200</td>
+              <td rowspan="3">
                 - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
                 D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
                 AH2<br />- D09, AH5, D36, D37, D38, D39, D40
               </td>
+              <td rowspan="3">A00, A01, D01, D07, D09</td>
+              <td>68</td>
+              <td>70</td>
+              <td>930</td>
+              <td>26.50</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Kế toán doanh nghiệp (Corporate Accounting) (S)</td>
+              <td rowspan="2">Kế toán</td>
+              <td>7340301_01</td>
+              <td>590</td>
               <td>68</td>
               <td>71</td>
               <td>910</td>
@@ -212,15 +424,55 @@
               <td><a href="#">Xem</a></td>
             </tr>
             <tr>
+              <td>3</td>
+              <td>Kế toán công (Public Sector Accounting)</td>
+              <td>7340301_02</td>
+              <td>210</td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr class="section-heading">
+              <td>I.</td>
+              <td colspan="13">
+                Lĩnh vực Kinh doanh và quản lý
+                <a
+                  href="https://www.ueh.edu.vn/cuoc-song-ueh/tin-tuc/to-chuc-the-cong-bo-xep-hang-dai-hoc-the-gioi-2025-theo-linh-vuc-cac-linh-vuc-truyen-thong-cua-ueh-dan-dau-cac-dai-hoc-tai-viet-nam-vao-top-cac-dai-hoc-hang-dau-the-gioi-73404"
+                  >(Top 301+ Đại học thế giới theo BXH THE World University
+                  Rankings 2025)</a
+                >
+              </td>
+            </tr>
+            <tr>
               <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
+              <td>Kiểm toán (Auditing)</td>
+              <td>Kiểm toán</td>
+              <td>7340302</td>
+              <td>200</td>
+              <td rowspan="3">
                 - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
                 D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
                 AH2<br />- D09, AH5, D36, D37, D38, D39, D40
               </td>
+              <td rowspan="3">A00, A01, D01, D07, D09</td>
+              <td>68</td>
+              <td>70</td>
+              <td>930</td>
+              <td>26.50</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Kế toán doanh nghiệp (Corporate Accounting) (S)</td>
+              <td rowspan="2">Kế toán</td>
+              <td>7340301_01</td>
+              <td>590</td>
               <td>68</td>
               <td>71</td>
               <td>910</td>
@@ -230,15 +482,64 @@
               <td><a href="#">Xem</a></td>
             </tr>
             <tr>
+              <td>3</td>
+              <td>Kế toán công (Public Sector Accounting)</td>
+              <td>7340301_02</td>
+              <td>210</td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td colspan="14" class="group-heading">
+                <b> Nhóm 1: Chương trình tiên tiến quốc tế </b><br />
+                Là các chương trình đào tạo được kiểm định chất lượng bởi các tổ
+                chức quốc tế (AUN-QA (Mạng lưới Đảm bảo chất lượng các trường
+                đại học ASEAN), FIBAA (Bộ tiêu chuẩn kiểm định chất lượng quốc
+                tế của châu Âu)…)
+              </td>
+            </tr>
+            <tr class="section-heading">
+              <td>I.</td>
+              <td colspan="13">
+                Lĩnh vực Kinh doanh và quản lý
+                <a
+                  href="https://www.ueh.edu.vn/cuoc-song-ueh/tin-tuc/to-chuc-the-cong-bo-xep-hang-dai-hoc-the-gioi-2025-theo-linh-vuc-cac-linh-vuc-truyen-thong-cua-ueh-dan-dau-cac-dai-hoc-tai-viet-nam-vao-top-cac-dai-hoc-hang-dau-the-gioi-73404"
+                  >(Top 301+ Đại học thế giới theo BXH THE World University
+                  Rankings 2025)</a
+                >
+              </td>
+            </tr>
+            <tr>
               <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
+              <td>Kiểm toán (Auditing)</td>
+              <td>Kiểm toán</td>
+              <td>7340302</td>
+              <td>200</td>
+              <td rowspan="4">
                 - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
                 D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
                 AH2<br />- D09, AH5, D36, D37, D38, D39, D40
               </td>
+              <td rowspan="4">A00, A01, D01, D07, D09</td>
+              <td>68</td>
+              <td>70</td>
+              <td>930</td>
+              <td>26.50</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Kế toán doanh nghiệp (Corporate Accounting) (S)</td>
+              <td rowspan="2">Kế toán</td>
+              <td>7340301_01</td>
+              <td>590</td>
               <td>68</td>
               <td>71</td>
               <td>910</td>
@@ -248,15 +549,71 @@
               <td><a href="#">Xem</a></td>
             </tr>
             <tr>
+              <td>3</td>
+              <td>Kế toán công (Public Sector Accounting)</td>
+              <td>7340301_02</td>
+              <td>210</td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
               <td>1</td>
               <td>Kinh doanh thương mại (Commerce)</td>
               <td>Kinh doanh thương mại</td>
               <td>7340121</td>
-              <td>
+              <td>210</td>
+
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+            </tr>
+
+            <tr class="section-heading">
+              <td>I.</td>
+              <td colspan="13">
+                Lĩnh vực Kinh doanh và quản lý
+                <a
+                  href="https://www.ueh.edu.vn/cuoc-song-ueh/tin-tuc/to-chuc-the-cong-bo-xep-hang-dai-hoc-the-gioi-2025-theo-linh-vuc-cac-linh-vuc-truyen-thong-cua-ueh-dan-dau-cac-dai-hoc-tai-viet-nam-vao-top-cac-dai-hoc-hang-dau-the-gioi-73404"
+                  >(Top 301+ Đại học thế giới theo BXH THE World University
+                  Rankings 2025)</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Kiểm toán (Auditing)</td>
+              <td>Kiểm toán</td>
+              <td>7340302</td>
+              <td>200</td>
+              <td rowspan="3">
                 - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
                 D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
                 AH2<br />- D09, AH5, D36, D37, D38, D39, D40
               </td>
+              <td rowspan="3">A00, A01, D01, D07, D09</td>
+              <td>68</td>
+              <td>70</td>
+              <td>930</td>
+              <td>26.50</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Kế toán doanh nghiệp (Corporate Accounting) (S)</td>
+              <td rowspan="2">Kế toán</td>
+              <td>7340301_01</td>
+              <td>590</td>
               <td>68</td>
               <td>71</td>
               <td>910</td>
@@ -266,15 +623,56 @@
               <td><a href="#">Xem</a></td>
             </tr>
             <tr>
+              <td>3</td>
+              <td>Kế toán công (Public Sector Accounting)</td>
+              <td>7340301_02</td>
+              <td>210</td>
+              <td>68</td>
+              <td>71</td>
+              <td>910</td>
+              <td>26.54</td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+
+            <tr class="section-heading">
+              <td>I.</td>
+              <td colspan="13">
+                Lĩnh vực Kinh doanh và quản lý
+                <a
+                  href="https://www.ueh.edu.vn/cuoc-song-ueh/tin-tuc/to-chuc-the-cong-bo-xep-hang-dai-hoc-the-gioi-2025-theo-linh-vuc-cac-linh-vuc-truyen-thong-cua-ueh-dan-dau-cac-dai-hoc-tai-viet-nam-vao-top-cac-dai-hoc-hang-dau-the-gioi-73404"
+                  >(Top 301+ Đại học thế giới theo BXH THE World University
+                  Rankings 2025)</a
+                >
+              </td>
+            </tr>
+            <tr>
               <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
+              <td>Kiểm toán (Auditing)</td>
+              <td>Kiểm toán</td>
+              <td>7340302</td>
+              <td>200</td>
+              <td rowspan="3">
                 - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
                 D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
                 AH2<br />- D09, AH5, D36, D37, D38, D39, D40
               </td>
+              <td rowspan="3">A00, A01, D01, D07, D09</td>
+              <td>68</td>
+              <td>70</td>
+              <td>930</td>
+              <td>26.50</td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+              <td><a href="#">Xem</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Kế toán doanh nghiệp (Corporate Accounting) (S)</td>
+              <td rowspan="2">Kế toán</td>
+              <td>7340301_01</td>
+              <td>590</td>
               <td>68</td>
               <td>71</td>
               <td>910</td>
@@ -284,435 +682,16 @@
               <td><a href="#">Xem</a></td>
             </tr>
             <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
+              <td>3</td>
+              <td>Kế toán công (Public Sector Accounting)</td>
+              <td>7340301_02</td>
+              <td>210</td>
               <td>68</td>
               <td>71</td>
               <td>910</td>
               <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Kinh doanh thương mại (Commerce)</td>
-              <td>Kinh doanh thương mại</td>
-              <td>7340121</td>
-              <td>
-                - A00<br />- A01, D26, D27, D28, D29, D30, AH3<br />- D01, D02,
-                D03, D04, D05, D06, DD2<br />- D07, D21, D22, D23, D24, D25,
-                AH2<br />- D09, AH5, D36, D37, D38, D39, D40
-              </td>
-              <td>68</td>
-              <td>71</td>
-              <td>910</td>
-              <td>26.54</td>
-              <td><a href="#">Xem</a></td>
-              <td><a href="#">Xem</a></td>
+              <td><a href="#"></a></td>
+              <td><a href="#"></a></td>
               <td><a href="#">Xem</a></td>
             </tr>
           </tbody>
