@@ -98,10 +98,10 @@
         z-index: 100;
       }
 
-      /* Make the first columns sticky */
+      /* Make only the first two columns sticky */
       .wpDataTablesWrapper table td:nth-child(1),
       .wpDataTablesWrapper table td:nth-child(2),
-      .wpDataTablesWrapper table th:nth-child(1),
+      .wpDataTablesWrapper table th:first-child,
       .wpDataTablesWrapper table th:nth-child(2) {
         position: sticky;
         left: 0;
@@ -109,10 +109,16 @@
         z-index: 2;
       }
 
-      /* Adjust left positions */
+      /* Adjust left position for the second column */
       .wpDataTablesWrapper table td:nth-child(2),
       .wpDataTablesWrapper table th:nth-child(2) {
         left: 48.25px; /* Adjust based on column width */
+      }
+
+      /* Make sure the PT3 and PT5 header cells are not sticky */
+      .wpDataTablesWrapper table thead tr:not(:first-child) th:nth-child(6),
+      .wpDataTablesWrapper table thead tr:not(:first-child) th:nth-child(7) {
+        position: static;
       }
 
       /* Ensure scrolling sync */
