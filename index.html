@@ -98,6 +98,13 @@
         z-index: 100;
       }
 
+      /* Explicitly make PT3 and PT5 header cells non-sticky */
+      .wpDataTablesWrapper table thead tr:nth-child(2) th:nth-child(1),
+      .wpDataTablesWrapper table thead tr:nth-child(2) th:nth-child(2) {
+        position: static !important;
+        left: auto !important;
+      }
+
       /* Make only the first two columns sticky */
       .wpDataTablesWrapper table td:nth-child(1),
       .wpDataTablesWrapper table td:nth-child(2),
@@ -186,8 +193,8 @@
 
       .wpDataTablesWrapper table td:nth-child(2),
       .wpDataTablesWrapper table th:nth-child(2) {
-        min-width: 300px;
-        max-width: 300px;
+        min-width: 240px;
+        max-width: 240px;
         width: 100px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -200,6 +207,12 @@
         .wpDataTablesWrapper table th:nth-child(2) {
           min-width: 100px;
           max-width: 100px;
+        }
+
+        .wpDataTablesWrapper table th:not(:nth-child(1)):not(:nth-child(2)),
+        .wpDataTablesWrapper table td:not(:nth-child(1)):not(:nth-child(2)) {
+          position: static !important;
+          left: auto !important;
         }
 
         .wpDataTablesWrapper {
